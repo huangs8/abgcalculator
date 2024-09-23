@@ -159,13 +159,20 @@ else:
 # Step 11: Free Water Deficit Calculation
 if Na > 145:
     st.header("Step 11: Free Water Deficit Calculation")
+
+    # Input parameters for free water deficit calculation
     age = st.number_input("Enter Age (years)", min_value=0, value=30)
     sex_coordinate = st.selectbox("Select Sex Coordinate (0.6 for females, 0.7 for males)", options=[0.6, 0.7])
     body_weight = st.number_input("Enter Body Weight (kg)", min_value=0.0, value=70.0)
 
-    # Calculate Total Body Water and Free Water Deficit
+    # Calculate Total Body Water
     total_body_water = sex_coordinate * body_weight
+
+    # Calculate Free Water Deficit
     free_water_deficit = total_body_water * ((Na / 140) - 1)
+
+    # Display the result
     st.write(f"### Free Water Deficit: {free_water_deficit:.2f} L")
 else:
     st.write("### No Free Water Deficit Calculation Needed: Sodium is not greater than 145 mEq/L.")
+
