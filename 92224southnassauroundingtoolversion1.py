@@ -146,4 +146,12 @@ bilirubin = st.number_input("Enter Bilirubin (mg/dL)", min_value=0.0, value=1.0)
 INR = st.number_input("Enter INR", min_value=0.0, value=1.0)
 
 # Calculate MELD Score
-MELD = (0.957 * np.log(current_creatinine) + 0.378 * np.log(bilirubin) + 1.120 * np.log
+MELD = (0.957 * np.log(current_creatinine) + 0.378 * np.log(bilirubin) + 1.120 * np.log(INR) + 0.6431)
+st.write(f"### MELD Score: {MELD:.2f}")
+
+# Calculate MELD-Na Score
+if Na > 0:
+    MELD_Na = MELD + (1.32 * (137 - Na)) - (0.033 * MELD * (137 - Na))
+    st.write(f"### MELD-Na Score: {MELD_Na:.2f}")
+else:
+    st.write("### Additional Information Needed: Sodium cannot be zero for MELD-Na calculation.")
